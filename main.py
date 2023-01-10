@@ -29,7 +29,7 @@ BATCH_SIZE = 128
 EPOCHS = 100
 
 # intialize a model
-model = ModelB()
+model = ModelA()
 
 # define the loss function
 loss_fn = torch.nn.MSELoss()
