@@ -16,7 +16,7 @@ class ModelA(nn.Module):
 
 class ModelB(nn.Module):
     def __init__(self):
-        super(ModelA, self).__init__()
+        super(ModelB, self).__init__()
         self.lin1 = nn.Linear(2, 128)
         self.lin2 = nn.Linear(128, 1)
 
