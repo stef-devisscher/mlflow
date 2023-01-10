@@ -19,10 +19,6 @@ y = torch.sin(x)
 y += torch.rand(size=y.shape) * EPSILON
 # save an image of our dataset to samples.png
 plt.plot(x, y)
-plt.xlabel('Angle [rad]')
-plt.ylabel('sin(x)')
-plt.axis('tight')
-plt.savefig("samples.png")
 
 # create a train and validation set
 x_train, x_val, y_train, y_val = train_test_split(x, y, test_size=0.2, random_state=42)
@@ -117,3 +113,20 @@ with mlflow.start_run():
             best_loss = val_loss
             print("NEW BEST")
             mlflow.log_artifact("logs/model.pt")
+
+    with torch.no_grad():
+        # create input features being the x value and the amplitude
+        xs = torch.linspace(-np.pi, np.pi, 1000).unsqueeze(1)
+        xs = torch.cat((xs, torch.ones_like(xs)), dim=1)
+
+        # define out 'dataset'
+        x = torch.linspace(-np.pi, np.pi, 1000).unsqueeze(1)
+        y = model(xs)
+        # save an image of our dataset to samples.png
+        plt.plot(x, y)
+        plt.xlabel('Angle [rad]')
+        plt.ylabel('sin(x)')
+        plt.axis('tight')
+        plt.savefig("predictions.png")
+
+        mlflow.log_artifact("predictions.png")
