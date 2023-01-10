@@ -31,6 +31,7 @@ then
     fi
     # push the models to ec2
     echo "Pushing..."
+    # remove the runs that were marked as 'deleted'
     mlflow gc
     aws s3 sync mlruns s3://mlflow.otiv.testing/$repo_name
 else
