@@ -39,7 +39,7 @@ then
     echo "Pushing..."
     # remove the runs that were marked as 'deleted'
     mlflow gc
-    aws s3 sync --quiet mlruns s3://mlflow.otiv.testing/$repo_name
+    aws s3 sync --quiet mlruns s3://mlflow.otiv/$repo_name
     echo "Done!"
     exit 0
 else
