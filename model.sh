@@ -20,7 +20,7 @@ elif [ $1 == "pull" ]
 then
     # pull the models from ec2
     echo "Pulling..."
-    aws s3 sync --quiet s3://mlflow.otiv.testing/$repo_name ./mlruns/
+    aws s3 sync --quiet s3://mlflow.otiv/$repo_name ./mlruns/
     # there are some absolute path names in the meta.yaml files, we need to fix those
     current_dir=$(pwd)
     find . -name "meta.yaml" -exec sed -i "s,^\(artifact_.*: file:\/\/\).*mlruns\/\(.*\)$,\1$current_dir\/mlruns\/\2," {} +
